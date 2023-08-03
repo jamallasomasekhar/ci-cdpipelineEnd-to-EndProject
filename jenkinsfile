@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage ('checkout for git') {
             steps {
-
+                git 'https://github.com/jamallasomasekhar/ci-cdpipelineEnd-to-EndProject.git'
             }
         }
         stage ('build on docker') {
@@ -42,7 +42,7 @@ pipeline {
                 git add deploy.yml
                 git commit -m 'updated my deploy.yml |jenkins pipeline'
                 git remote -v
-                git push 
+                git push https://github.com/jamallasomasekhar/ci-cdmanifest.git HEAD:master
             }
         }
     }
