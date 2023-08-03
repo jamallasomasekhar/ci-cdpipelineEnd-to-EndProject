@@ -21,8 +21,8 @@ pipeline {
         }
         stage ('docker phush to hub ') {
             steps {
-                docker.withRegistry('https://hub.docker.com/repository/docker/jamallasomasekhar/fonicy:${BUILD_NUMBER}', credentialsId: 'docker') {
-                    dockerImage.push() 
+                withDockerRegistry([credentialsId: "docker", url: "https://hub.docker.com/repository/docker/jamallasomasekhar/fonicy/general"]) {
+                    bat "docker push jamallasomasekhar/fonicy:${BUILD_NUMBER}"
                 }
             }
         }
