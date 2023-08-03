@@ -21,12 +21,11 @@ pipeline {
         }
         stage ('docker phush to hub ') {
             steps {
-                script {
-                    sh '''
-                    echo "docker push to repo"
-                    docker images
-                    sudo docker push jamallasomasekhar/fonicy:${BUILD_NUMBER}
-                    ''' 
+                sh '''
+                echo "docker push to repo"
+                docker images
+                docker push jamallasomasekhar/fonicy:${BUILD_NUMBER}
+                ''' 
                 }
             }
         }
