@@ -25,6 +25,7 @@ pipeline {
                     dockerImage.push() 
                 }
             }
+        }
         stage ('checkout k8s manifest') {
             steps {
                 git credentialsId: 'somasekharjamalla', url: 'https://github.com/jamallasomasekhar/ci-cdmanifest.git'
