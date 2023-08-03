@@ -36,6 +36,7 @@ pipeline {
         }
         stage ('edit deploy.yml'){
             steps {
+                sh '''
                 cat deploy.yml
                 sed -i 's/1/${BUILD_NUMBER}/g' deploy.yml
                 cat deploy.yml
@@ -43,6 +44,7 @@ pipeline {
                 git commit -m 'updated my deploy.yml |jenkins pipeline'
                 git remote -v
                 git push https://github.com/jamallasomasekhar/ci-cdmanifest.git HEAD:master
+                sh'''
             }
         }
     }
