@@ -2,7 +2,6 @@ pipeline {
     agent any
     environment {
        IMAGE_TAG = "${BUILD_NUMBER}"
-       DOCKER_USER = 
     }
     stages {
         stage ('checkout for git') {
