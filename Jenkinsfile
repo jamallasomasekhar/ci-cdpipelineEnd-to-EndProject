@@ -19,17 +19,13 @@ pipeline {
                 }
             }
         }
-        stage('logon') {
-            steps {
-                sh 'credentials(\'docker\') | docker login -u credentials(\'docker\')_USER --password-stdin'
-            }
-        }
         stage ('docker phush to hub ') {
             steps {
                 script{
                     sh '''
                     echo "docker push to repo"
                     docker images
+                    credentials('docker') | docker login -u credentials('docker')_USER --password-stdin
                     docker push jamallasomasekhar/fonicy:${BUILD_NUMBER}
                     '''
                 }
