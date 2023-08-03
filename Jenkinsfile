@@ -24,7 +24,8 @@ pipeline {
                 script {
                     sh '''
                     echo "docker push to repo"
-                    docker push jamallasomasekhar/fonicy:${BUILD_NUMBER}
+                    docker images
+                    sudo docker push jamallasomasekhar/fonicy:${BUILD_NUMBER}
                     ''' 
                 }
             }
