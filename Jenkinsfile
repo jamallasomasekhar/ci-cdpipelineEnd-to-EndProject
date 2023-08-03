@@ -37,7 +37,7 @@ pipeline {
         stage ('edit deploy.yml'){
             steps {
                 cat deploy.yml
-                sed -i '' "s/1/${BUILD_NUMBER}/g" deploy.yml
+                sed -i "s/1/${BUILD_NUMBER}/g" deploy.yml
                 cat deploy.yml
                 git add deploy.yml
                 git commit -m 'updated my deploy.yml |jenkins pipeline'
