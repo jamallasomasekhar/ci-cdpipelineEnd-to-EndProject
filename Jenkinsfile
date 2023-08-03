@@ -21,14 +21,15 @@ pipeline {
         }
         stage ('docker phush to hub ') {
             steps {
-                bat '''
-                echo "docker push to repo"
-                docker images
-                docker push jamallasomasekhar/fonicy:${BUILD_NUMBER}
-                ''' 
+                script{
+                    sh '''
+                    echo "docker push to repo"
+                    docker images
+                    docker push jamallasomasekhar/fonicy:${BUILD_NUMBER}
+                    '''
                 }
             }
-        
+        }
         stage ('checkout k8s manifest') {
             steps {
                 git credentialsId: 'somasekharjamalla', url: 'https://github.com/jamallasomasekhar/ci-cdmanifest.git'
