@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-       IMAGE_TAG = "$(BUILD_NUMBER)"
+       IMAGE_TAG = "${BUILD_NUMBER}"
     }
     stages {
         stage ('checkout for git') {
@@ -14,7 +14,7 @@ pipeline {
                 script{
                     sh '''
                     echo "docker bulding"
-                    docker build -t jamallasomasekhar/fonicy:$(BUILD_NUMBER) .
+                    docker build -t jamallasomasekhar/fonicy:${BUILD_NUMBER} .
                     '''
                 }
             }
@@ -24,7 +24,7 @@ pipeline {
                 script {
                     sh '''
                     echo "docker push to repo"
-                    docker push jamallasomasekhar/fonicy:$(BUILD_NUMBER)
+                    docker push jamallasomasekhar/fonicy:${BUILD_NUMBER}
                     ''' 
                 }
             }
