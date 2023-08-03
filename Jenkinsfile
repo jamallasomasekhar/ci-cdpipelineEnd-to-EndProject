@@ -22,7 +22,7 @@ pipeline {
         stage ('docker phush to hub ') {
             steps {
                 withDockerRegistry([credentialsId: "docker", url: "https://hub.docker.com/repository/docker/jamallasomasekhar/fonicy/general"]) {
-                    bat "docker push jamallasomasekhar/fonicy:${BUILD_NUMBER}"
+                    sh "docker push jamallasomasekhar/fonicy:${BUILD_NUMBER}"
                 }
             }
         }
