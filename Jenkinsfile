@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
        IMAGE_TAG = "${BUILD_NUMBER}"
+       DOCKER_USER = 
     }
     stages {
         stage ('checkout for git') {
@@ -25,7 +26,7 @@ pipeline {
                     sh '''
                     echo "docker push to repo"
                     docker images
-                    credentials('docker') | docker login -u credentials('docker')_USER --password-stdin
+                    docker login --username=jamallasomasekhar --password=J@somu9587
                     docker push jamallasomasekhar/fonicy:${BUILD_NUMBER}
                     '''
                 }
