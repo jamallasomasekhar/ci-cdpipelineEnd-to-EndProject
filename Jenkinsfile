@@ -21,11 +21,8 @@ pipeline {
         }
         stage ('docker phush to hub ') {
             steps {
-                sh '''
-                echo "docker push to repo"
-                docker images
-                docker push jamallasomasekhar/fonicy:${BUILD_NUMBER}
-                ''' 
+                docker.withRegistry('https://hub.docker.com/repository/docker/jamallasomasekhar/fonicy:${BUILD_NUMBER}', credentialsId: 'docker') {
+                    dockerImage.push() 
                 }
             }
         stage ('checkout k8s manifest') {
