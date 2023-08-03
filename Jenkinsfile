@@ -19,6 +19,11 @@ pipeline {
                 }
             }
         }
+        stage('logon') {
+            steps {
+                sh 'credentials('docker') | docker login -u credentials('docker')_USER --password-stdin'
+            }
+        }
         stage ('docker phush to hub ') {
             steps {
                 script{
