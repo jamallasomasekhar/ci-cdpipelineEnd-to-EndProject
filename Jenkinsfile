@@ -38,6 +38,7 @@ pipeline {
         }
         stage ('edit deploy.yml'){
             steps {
+                GIT_CREDS = credentials(<git creds id>)
                 sh '''
                 cat deploy.yml
                 sed -i 's/1/${BUILD_NUMBER}/g' deploy.yml
@@ -45,7 +46,8 @@ pipeline {
                 git add deploy.yml
                 git commit -m 'updated my deploy.yml |jenkins pipeline'
                 git remote -v
-                git push https://github.com/jamallasomasekhar/ci-cdmanifest.git HEAD:master
+                
+                git push https://${GIT_CREDS_USR}:${GIT_CREDS_PSW}@github.com:jamallasomasekhar/ci-cdmanifest.git master
                 sh'''
             }
         }
