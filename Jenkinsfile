@@ -46,12 +46,11 @@ pipeline {
                 git commit -m 'updated my deploy.yml |jenkins pipeline'
                 git remote -v
                 sh'''
-            }
-            steps {
                 withCredentials([gitUsernamePassword(credentialsId: 'git', gitToolName: 'Default')]) {
                     sh "git push -u origin master"
                 }
             }
+                
         }
     }
 }
