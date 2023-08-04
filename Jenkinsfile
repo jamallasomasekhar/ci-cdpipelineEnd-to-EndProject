@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
        IMAGE_TAG = "${BUILD_NUMBER}"
-       GIT_CREDS = credentials('git')
+       GIT_CREDS  credentials('git')
     }
     stages {
         stage ('checkout for git') {
@@ -46,9 +46,12 @@ pipeline {
                 git add deploy.yml
                 git commit -m 'updated my deploy.yml |jenkins pipeline'
                 git remote -v
-                
-                git push https://${GIT_CREDS_USR}:${GIT_CREDS_PSW}@github.com/jamallasomasekhar/ci-cdmanifest.git master
                 sh'''
+            }
+            steps {
+                withCredentials([gitUsernamePassword(credentialsId: 'git', gitToolName: 'Default')]) {
+                    sh "git push -u origin master"
+                }
             }
         }
     }
