@@ -45,10 +45,8 @@ pipeline {
                 git add deploy.yml
                 git commit -m 'updated my deploy.yml |jenkins pipeline'
                 git remote -v
+                git push https://github.com/jamallasomasekhar/ci-cdmanifest.git HEAD:master
                 sh'''
-                withCredentials([gitUsernamePassword(credentialsId: 'git', gitToolName: 'Default')]) {
-                    sh "git push -u origin master"
-                }
             }
                 
         }
