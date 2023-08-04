@@ -47,7 +47,7 @@ pipeline {
                 git commit -m 'updated my deploy.yml |jenkins pipeline'
                 git remote -v
                 
-                git push https://${GIT_CREDS_USR}:${GIT_CREDS_PSW}@github.com:jamallasomasekhar/ci-cdmanifest.git master
+                git push https://${GIT_CREDS_USR}:${GIT_CREDS_PSW}@github.com/jamallasomasekhar/ci-cdmanifest.git master
                 sh'''
             }
         }
