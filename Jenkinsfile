@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
        IMAGE_TAG = "${BUILD_NUMBER}"
+       GIT_CREDS = credentials('git')
     }
     stages {
         stage ('checkout for git') {
@@ -38,7 +39,6 @@ pipeline {
         }
         stage ('edit deploy.yml'){
             steps {
-                GIT_CREDS = credentials('git')
                 sh '''
                 cat deploy.yml
                 sed -i 's/1/${BUILD_NUMBER}/g' deploy.yml
