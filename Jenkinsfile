@@ -38,18 +38,16 @@ pipeline {
         }
         stage ('edit deploy.yml'){
             steps {
-                withCredentials([
-                    usernamePassword(credentialsId: '...', usernameVariable: 'jamallasomasekhar', passwordVariable: 'somu9587')
-                ]) {
-                    sh '''
-                    cat deploy.yml
-                    sed -i 's/1/${BUILD_NUMBER}/g' deploy.yml
-                    cat deploy.yml
-                    git add deploy.yml
-                    git commit -m 'updated my deploy.yml |jenkins pipeline'
-                    git remote -vgit push https://github.com/jamallasomasekhar/ci-cdmanifest.git HEAD:master
-                    sh'''
-                }
+                sh '''
+                cat deploy.yml
+                sed -i 's/1/${BUILD_NUMBER}/g' deploy.yml
+                cat deploy.yml
+                git add deploy.yml
+                git commit -m 'updated my deploy.yml |jenkins pipeline'
+                git remote -v
+                git push origin master
+                git push https://github.com/jamallasomasekhar/ci-cdmanifest.git HEAD:master
+                sh'''
             }     
         }
     }
