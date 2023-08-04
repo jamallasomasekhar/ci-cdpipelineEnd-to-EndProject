@@ -39,7 +39,7 @@ pipeline {
         stage ('edit deploy.yml'){
             steps {
                 withCredentials([
-                    usernamePassword(credentialsId: '...', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')
+                    usernamePassword(credentialsId: '...', usernameVariable: 'jamallasomasekhar', passwordVariable: 'somu9587')
                 ]) {
                     sh '''
                     cat deploy.yml
